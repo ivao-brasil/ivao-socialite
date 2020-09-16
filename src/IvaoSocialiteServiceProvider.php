@@ -20,7 +20,7 @@ class IvaoSocialiteServiceProvider extends ServiceProvider
         $socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
         $socialite->extend(
             'ivao',
-            function ($app) use ($socialite) {
+            function ($app) {
                 $config = $app['config']['services.ivao'];
                 $redirect = Str::startsWith($config["redirect"], '/') ? $this->app->make('url')->to($config["redirect"]) : $config["redirect"];
 
