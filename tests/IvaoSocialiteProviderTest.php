@@ -3,6 +3,7 @@
 
 namespace Tests;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use IvaoSocialite\IvaoProvider;
 use IvaoSocialite\UserDataHttpClient;
@@ -44,7 +45,7 @@ class IvaoSocialiteProviderTest extends TestCase
     {
         $parameters = $dependencies + [
                 "request" => $this->createMock(Request::class),
-                "httpClient" => new UserDataHttpClient(),
+                "httpClient" => new UserDataHttpClient(new Client()),
                 "redirectUrl" => "https://br.ivao.aero"
             ];
 
