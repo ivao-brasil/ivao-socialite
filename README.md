@@ -62,6 +62,8 @@ Note that due to restrictions on IVAO API, Socialite user instance is heavily li
 ]
 ```
 
+In case no User Data can be extracted from the API with the provided token, the Socialite `user` method will return `null`. 
+
 ## Issues and contributions
 If you found an error/bug/bad behavior, feel free to open an issue reporting it. Also, pull requests are welcome and pretty much appreciated.
 
