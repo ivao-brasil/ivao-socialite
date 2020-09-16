@@ -29,7 +29,7 @@ class User implements \Laravel\Socialite\Contracts\User, ArrayAccess
             "pilotRating" => $raw["ratingpilot"],
             "division" => $raw["division"],
             "country" => $raw["country"],
-            "staff" => explode(":", $raw["staff"])
+            "staff" => $raw["staff"] ? explode(":", $raw["staff"]) : []
         ];
     }
 
