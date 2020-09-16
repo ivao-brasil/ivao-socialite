@@ -1,5 +1,5 @@
 {
-  "name": "ivao-br-web/ivao-socialite",
+  "name": "ivao-brasil/ivao-socialite",
   "description": "A Laravel Socialite Provider for IVAO",
   "type": "library",
   "license": "MIT",
