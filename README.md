@@ -55,7 +55,7 @@ Note that due to restrictions on IVAO API, Socialite user instance is heavily li
   "lastName" => "Henrique",
   "administrativeRating" => 2,
   "atcRating" => 5,
-  "ratingPilot" => 5,
+  "pilotRating" => 5,
   "division" => "BR",
   "country" => "BR",
   "staff" => [ "BR-AWM", "WD9" ]
