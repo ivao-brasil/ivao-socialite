@@ -2,6 +2,8 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ivao-brasil/ivao-socialite)
 ![Test](https://github.com/ivao-brasil/ivao-socialite/workflows/Test/badge.svg)
 ![GitHub](https://img.shields.io/github/license/ivao-brasil/ivao-socialite)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ivao-brasil_ivao-socialite&metric=alert_status)](https://sonarcloud.io/dashboard?id=ivao-brasil_ivao-socialite)
+[![Packagist Version](https://img.shields.io/packagist/v/ivao-brasil/ivao-socialite)](https://packagist.org/packages/ivao-brasil/ivao-socialite)
 
 A [Laravel Socialite](https://laravel.com/docs/master/socialite) Provider for IVAO.
 
