@@ -58,6 +58,10 @@ class User implements \Laravel\Socialite\Contracts\User, ArrayAccess
         return null;
     }
 
+    public function getRaw() {
+        return $this->raw;
+    }
+
     public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->raw);
