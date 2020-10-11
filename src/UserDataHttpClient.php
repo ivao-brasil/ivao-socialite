@@ -27,6 +27,6 @@ class UserDataHttpClient
 
         $content = json_decode($response->getBody(), true);
 
-        return array_key_exists("result", $content) && $content["result"] ? $content : [];
+        return ($content && array_key_exists("result", $content) && $content["result"]) ? $content : [];
     }
 }
