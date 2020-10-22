@@ -14,4 +14,3 @@ jobs:
         uses: php-actions/composer@v2
         with:
           command: test
-          only_args: dev
