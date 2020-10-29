@@ -14,3 +14,5 @@ jobs:
         uses: php-actions/composer@v2
         with:
           command: test
+          suggest: 'yes'
+          progress: 'yes'
