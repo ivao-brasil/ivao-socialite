@@ -18,6 +18,10 @@ class UserDataHttpClient
 
     public function getUserFromToken(string $token): array
     {
+        if ($token === 'error'){
+            throw new \ErrorException('This domain is not allowed to use the Login API! Contact the System Administrator');
+        }
+        
         $response = $this->http->request("GET", self::IVAO_LOGIN_API_URL, [
             'query' => [
                 "token" => $token,
