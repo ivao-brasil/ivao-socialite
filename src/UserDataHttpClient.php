@@ -5,6 +5,7 @@ namespace IvaoSocialite;
 
 
 use GuzzleHttp\ClientInterface;
+use IvaoSocialite\Exception\DomainNotAllowedException;
 
 class UserDataHttpClient
 {
@@ -18,8 +19,8 @@ class UserDataHttpClient
 
     public function getUserFromToken(string $token): array
     {
-        if ($token === 'error'){
-            throw new \ErrorException('This domain is not allowed to use the Login API! Contact the System Administrator');
+        if ($token === 'error') {
+            throw new DomainNotAllowedException();
         }
         
         $response = $this->http->request("GET", self::IVAO_LOGIN_API_URL, [
