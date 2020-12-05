@@ -5,5 +5,5 @@ updates:
     target-branch: "develop"
     schedule:
       interval: "daily"
-    commit_message:
+    commit-message:
       prefix: "build"
