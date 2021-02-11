@@ -22,7 +22,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, gd, memcached
+          extensions: dom, curl, libxml, mbstring
           tools: composer:v2
           coverage: none
 
