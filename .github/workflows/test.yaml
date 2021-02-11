@@ -3,16 +3,57 @@ name: Test
 on: [push]
 
 jobs:
-  build-test:
+  test:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ["7.3", "7.4", "8.0"]
+        stability: [prefer-lowest, prefer-stable]
+
+    name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: php-actions/composer@v2
-      - name: Run tests
-        uses: php-actions/composer@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          command: test
-          suggest: 'yes'
-          progress: 'yes'
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, gd, memcached
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose
+  publish:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    needs: [test]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - run: npm i -D @semantic-release/changelog @semantic-release/github @semantic-release/git
+
+      - run: npx semantic-release
