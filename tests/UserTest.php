@@ -20,7 +20,7 @@ class UserTest extends TestCase
         $this->assertEquals("Joao Pedro Henrique", $user->getName());
         $this->assertEquals(false, $user["isHqPilot"]);
         $this->assertEquals(true, $user["isNpoMember"]);
-        $this->assertEquals(862153, $user['seconds_as_atc']);
-        $this->assertEquals(12859731, $user['seconds_as_pilot']);
+        $this->assertEquals(862153, $user['secondsAsAtc']);
+        $this->assertEquals(12859731, $user['secondsAsPilot']);
     }
 }
