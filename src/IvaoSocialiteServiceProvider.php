@@ -23,8 +23,10 @@ class IvaoSocialiteServiceProvider extends ServiceProvider
             function ($app) {
                 $config = $app['config']['services.ivao'];
                 $redirect = Str::startsWith($config["redirect"], '/') ? $this->app->make('url')->to($config["redirect"]) : $config["redirect"];
+                $loginUrl = array_key_exists("ivao-dev-login-url", $config) ? $config["ivao-dev-login-url"] : null;
+                $apiUrl = array_key_exists("ivao-dev-login-api", $config) ? $config["ivao-dev-login-api"] : null;
 
-                return new IvaoProvider($this->app->make(Request::class), $this->app->make(UserDataHttpClient::class), $redirect);
+                return new IvaoProvider($this->app->make(Request::class), $this->app->make(UserDataHttpClient::class), $redirect, $loginUrl, $apiUrl);
             }
         );
     }

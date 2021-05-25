@@ -12,12 +12,16 @@ class IvaoProvider implements Provider
     private $redirectUrl;
     private $request;
     private $httpClient;
+    private $loginUrl;
+    private $apiUrl;
 
-    public function __construct(Request $request, UserDataHttpClient $httpClient, string $redirectUrl)
+    public function __construct(Request $request, UserDataHttpClient $httpClient, string $redirectUrl, ?string $loginUrl, ?string $apiUrl)
     {
         $this->request = $request;
         $this->httpClient = $httpClient;
         $this->redirectUrl = $redirectUrl;
+        $this->loginUrl = $loginUrl ?? self::IVAO_LOGIN_REDIRECT_URL;
+        $this->apiUrl = $apiUrl;
     }
 
     /**
@@ -27,7 +31,7 @@ class IvaoProvider implements Provider
      */
     public function redirect()
     {
-        return new RedirectResponse(self::IVAO_LOGIN_REDIRECT_URL . "?url=" . $this->redirectUrl);
+        return new RedirectResponse($this->loginUrl . "?url=" . $this->redirectUrl);
     }
 
     /**
@@ -37,7 +41,7 @@ class IvaoProvider implements Provider
      */
     public function user()
     {
-        $rawUserData = $this->httpClient->getUserFromToken($this->extractTokenFromUrl());
+        $rawUserData = $this->httpClient->getUserFromToken($this->extractTokenFromUrl(), $this->apiUrl);
 
         return $rawUserData ? new User($rawUserData) : null;
     }

@@ -17,10 +17,19 @@ composer require ivao-brasil/ivao-socialite
 After that, you must add the configuration in your Laravel config file, such as any other Socialite Provider. In order to do it, head over to your `config/services.php` file and add the following session:
 ```php
 "ivao" => [
-    "redirect" => "/your-callback"
+    "redirect" => "/"
 ]
 ```
 This callback will be the URL which will be forwarded by IVAO Login API. You can use either an URL or a route path in configuration.
+
+Or, for development purposes, if you need to mock the IVAO login to a local application, you can override the urls called as follows:
+```php
+"ivao" => [
+    "redirect" => "/",
+    "ivao-dev-login-url" => "https://localhost/fakeivaologin/",
+    "ivao-dev-login-api" => "http://localhost/fakeivaologin/api/",
+]
+```
 
 After that, you're good to go. You can use it in your code as any other Socialite Provider.
 
