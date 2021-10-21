@@ -17,13 +17,14 @@ class UserDataHttpClient
         $this->http = $http;
     }
 
-    public function getUserFromToken(string $token): array
+    public function getUserFromToken(string $token, ?string $apiUrl): array
     {
         if ($token === 'error') {
             throw new DomainNotAllowedException();
         }
-        
-        $response = $this->http->request("GET", self::IVAO_LOGIN_API_URL, [
+        $apiUrl = $apiUrl ?? self::IVAO_LOGIN_API_URL;
+
+        $response = $this->http->request("GET", $apiUrl, [
             'query' => [
                 "token" => $token,
                 "type" => "json"

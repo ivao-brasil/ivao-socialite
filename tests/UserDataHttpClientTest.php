@@ -25,7 +25,7 @@ class UserDataHttpClientTest extends TestCase
 
         $this->expectException(DomainNotAllowedException::class);
         $this->expectExceptionMessage('This domain is not allowed to use the Login API! Contact the System Administrator');
-        $this->httpClient->getUserFromToken($invalidDomainToken);
+        $this->httpClient->getUserFromToken($invalidDomainToken, null);
     }
 
 }
