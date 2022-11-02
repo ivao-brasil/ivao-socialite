@@ -1,10 +1,7 @@
 name: Test
 
 on:
-  pull_request:
-    paths:
-      - '**.php'
-      - 'composer.lock'
+  pull_request
 
 jobs:
   test:
