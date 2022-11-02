@@ -2,8 +2,6 @@ name: Test
 
 on:
   pull_request:
-    types:
-      - opened
     paths:
       - '**.php'
       - 'composer.lock'
