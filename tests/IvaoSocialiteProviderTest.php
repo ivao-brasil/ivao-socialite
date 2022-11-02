@@ -46,9 +46,11 @@ class IvaoSocialiteProviderTest extends TestCase
         $parameters = $dependencies + [
                 "request" => $this->createMock(Request::class),
                 "httpClient" => new UserDataHttpClient(new Client()),
-                "redirectUrl" => "https://br.ivao.aero"
+                "redirectUrl" => "https://br.ivao.aero",
+                "ivao-dev-login-url" => null,
+                "ivao-dev-login-api" => null
             ];
 
-        return new IvaoProvider($parameters["request"], $parameters["httpClient"], $parameters["redirectUrl"]);
+        return new IvaoProvider($parameters["request"], $parameters["httpClient"], $parameters["redirectUrl"], $parameters["ivao-dev-login-url"], $parameters["ivao-dev-login-api"]);
     }
 }
